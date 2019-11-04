@@ -32,6 +32,7 @@ end
         
 end
 
+user1 = User.create(username: 'ablanco', password: 'ablanco', password_confirmation: 'ablanco')
 
 # freetailbeer1 = Beer.create(name: 'Original', style: 'Amber Ale', abv: '6.1', image_url: 'https://www.freetailbrewing.com/wp-content/uploads/FreetailOriginal_Can.png', brewery_id: '1')
 # freetailbeer2 = Beer.create(name: 'Bat Outta Helles', style: 'Bavarian Helles Lager', abv: '4.8', image_url: 'https://www.freetailbrewing.com/wp-content/uploads/helles-can.png', brewery_id: '1')
