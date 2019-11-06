@@ -22,13 +22,14 @@
 
 1000.times do
 
-    Beer.create(name: Faker::Beer.name, style: Faker::Beer.style, abv: Faker::Beer.alcohol, description: Faker::Beer.ibu, image_url: Faker::LoremFlickr.image, brewery_id: rand(1...200))
+    Beer.create(name: Faker::Beer.name, style: Faker::Beer.style, abv: Faker::Beer.alcohol, description: Faker::Beer.ibu, image_url: "https://www.freetailbrewing.com/wp-content/uploads/FreetailOriginal_Can.png", brewery_id: rand(1...200))
     
 end
 
 300.times do
 
-    Brewery.create(name: Faker::Beer.brand, location: Faker::Beer.blg, image_url: Faker::LoremFlickr.image)
+    Brewery.create(name: Faker::Beer.brand, location: Faker::Beer.blg, image_url: 'http://www.sporcle.com/blog/wp-content/uploads/2018/10/1-44.jpg')
+    Brewery.create(name: Faker::Beer.brand, location: Faker::Beer.blg, image_url: 'https://media-cdn.tripadvisor.com/media/photo-s/05/43/5b/fb/independence-brewing.jpg')
         
 end
 
