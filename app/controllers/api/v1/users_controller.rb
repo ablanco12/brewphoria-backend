@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorized, only: [:index, :create ]
+  skip_before_action :authorized, only: [:index, :create, :show ]
 
   def index
     @users = User.all 
@@ -9,7 +9,12 @@ class Api::V1::UsersController < ApplicationController
   def profile
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
   end
- 
+
+  def show
+    @user = User.find(params[:id])
+    render json: @user.to_json(include: :reviews)
+  end  
+
   def create
     
     @user = User.create(user_params)
