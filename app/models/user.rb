@@ -3,5 +3,5 @@ class User < ApplicationRecord
     validates :username, uniqueness: { case_sensitive: false }
 
     has_many :reviews
-    
+    has_one_attached :avatar
 end

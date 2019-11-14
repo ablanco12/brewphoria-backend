@@ -2,33 +2,42 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :authorized, only: [:index, :create, :show ]
 
   def index
-    @users = User.all 
+
+    @users = User.with_attached_avatar.all 
     render json: @users
   end
 
   def profile
+
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
   end
 
   def show
-    @user = User.find(params[:id])
-    render json: @user.to_json(include: :reviews)
+    user = User.find(params[:id])
+    render json: user
+    
   end  
 
   def create
-    
-    @user = User.create(user_params)
-    if @user.valid?
-      @token = encode_token({ user_id: @user.id })
-      render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
-    else
-      render json: { error: 'failed to create user' }, status: :not_acceptable
-    end
+
+    @user = User.create(username: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
+    @user.avatar.attach(params[:avatar])
+    @user.save
+    render json:@user
+    # @user = User.create(user_params)
+    # if @user.valid?
+    #   @token = encode_token({ user_id: @user.id })
+    #   render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
+    # else
+    #   render json: { error: 'failed to create user' }, status: :not_acceptable
+    # end
   end
  
   private
  
   def user_params
-    params.require(:user).permit(:id, :username, :password, :password_confirmation)
+    byebug
+
+    params.require(:user).permit(:id, :username, :password, :password_confirmation, :avatar)
   end
 end

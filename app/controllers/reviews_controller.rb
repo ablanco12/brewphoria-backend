@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-    render json: @review.to_json(include: :users), status: 200
+    render json: @review.to_json(include: [:users, :beers]), status: 200
   end
 
   def create
