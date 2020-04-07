@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-
 # BREWERIES
 freetail = Brewery.create(name: 'Freetail Brewing Co.', location: 'San Antonio, TX', image_url: 'http://www.sporcle.com/blog/wp-content/uploads/2018/10/1-44.jpg')
 
